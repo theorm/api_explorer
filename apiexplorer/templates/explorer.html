@@ -1,0 +1,30 @@
+<!doctype html>
+<title>API documentation for {{ name }}</title>
+
+<body>
+    <ul>
+        {% for endpoint in endpoints %}
+          <li>
+            <b>
+                <i>
+                {% for method in endpoint.methods %}
+                    {{ method }}
+                {% endfor %}
+                </i> 
+                {{ endpoint.url }}
+            </b>
+            <p>
+                <b>@</b> {{ endpoint.code }}
+            </p>
+            {% if endpoint.arguments %}
+            <ul>
+                {% for arg,doc in endpoint.arguments.items() %}
+                <li title="{{doc}}">{{ arg }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <p>{{endpoint.docs|safe}}</p>
+          </li>
+        {% endfor %}
+    </ul>
+</body>
